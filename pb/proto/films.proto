@@ -1,0 +1,32 @@
+syntax = "proto3";
+package pb;
+option go_package = "proto";
+
+message Film {
+    int64 id = 1;
+    string name = 2;
+    int64 price = 3;
+}
+
+message ListFilmReq {}
+
+message ListFilmRes{
+    Film film = 1;
+}
+
+message User {
+    int64 id = 1;
+    string name = 2;
+    string surname = 3;
+}
+
+message ListUserReq {}
+
+message ListUserRes {
+    User user = 1;
+}
+
+service FilmService {
+    rpc ListFilms(ListFilmReq) returns (stream ListFilmRes);
+    rpc ListUsers(ListUserReq) returns (stream ListUserRes);
+}
